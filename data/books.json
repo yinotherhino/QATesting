@@ -1,5 +1,32 @@
 [
-	{ "name": "Call of the wild", "author": "Louis wilder", "id": 1 },
-	{ "name": "Love like no other", "author": "Charlie Bronsey", "id": 2 },
-	{ "name": "Face Off", "author": "John Travolta", "id": 0.19989608050404506 }
+ {
+  "name": "Call of the wild",
+  "author": "Louis wilder",
+  "id": 1
+ },
+ {
+  "name": "Love like no other",
+  "author": "Charlie Bronsey",
+  "id": 2
+ },
+ {
+  "name": "Face Off",
+  "author": "John Travolta",
+  "id": 0.19989608050404506
+ },
+ {
+  "name": "Integration",
+  "author": "Yino",
+  "id": 0.0987269880702002
+ },
+ {
+  "name": "Integration",
+  "author": "Yino",
+  "id": 0.6753527477835148
+ },
+ {
+  "name": "Integration",
+  "author": "Yino",
+  "id": 0.2837248128675087
+ }
 ]

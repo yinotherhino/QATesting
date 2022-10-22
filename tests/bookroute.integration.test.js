@@ -22,4 +22,41 @@ describe("Integration test", ()=>{
         )
         expect(statusCode).toEqual(200)
     })
+
+    it('Post - failure', async ()=>{
+        const {body, statusCode} = await request(app).post("/api/books").send({
+            name: "",
+            author: "Yino"
+        });
+
+        console.log(body)
+        expect(statusCode).toEqual(400);
+        expect(body).toEqual({
+            errors: [
+                {
+                    location: "body",
+                    msg: "Book name is required.",
+                    param: "name",
+                    value: ""
+                }
+            ]
+        })
+    })
+
+    it('Post - Success', async ()=>{
+        const {body, statusCode} = await request(app).post("/api/books").send({
+            name: "Integration",
+            author: "Yino"
+        });
+
+        expect(statusCode).toEqual(200);
+
+        expect(body).toEqual([
+            {
+                message: "Success"
+            }
+        ])
+
+    })
+
 })
