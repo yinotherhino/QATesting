@@ -46,4 +46,45 @@ router.post('/', [
 
 })
 
+router.put('/:bookid' , (req, res)=>{
+    const {bookid} = req.params;
+    const {name, author} = req.body;
+
+    const foundBook = bookData.find((book) => book.id == bookid)
+
+    if(!foundBook){
+        return res.status(404).send({
+            errors: true,
+            message: "Book not found"
+        })
+    }
+
+    let updatedBook = null;
+    const updatedBooks = bookData.map((book)=>{
+        if(bookid == book.id){
+            updatedBook= {
+                ...book,
+                name,
+                author
+            }
+            return updatedBook
+        }
+        return book
+    });
+
+    const isSaved = save(updatedBooks);
+
+        if(!isSaved){
+            return res.status(500).json({
+                error: true,
+                message: "Could not update book"
+            })
+        }
+
+        // res.json(updatedBook)
+
+    res.status(201).send(updatedBook);
+
+})
+
 module.exports = router;

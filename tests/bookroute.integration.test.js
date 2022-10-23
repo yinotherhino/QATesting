@@ -1,5 +1,5 @@
 const express = require("express");
-const request =require("supertest");
+const request = require("supertest");
 const bookRoute = require("../routes/books.route.js");
 
 const app = express();
@@ -29,7 +29,6 @@ describe("Integration test", ()=>{
             author: "Yino"
         });
 
-        console.log(body)
         expect(statusCode).toEqual(400);
         expect(body).toEqual({
             errors: [
@@ -56,6 +55,37 @@ describe("Integration test", ()=>{
                 message: "Success"
             }
         ])
+
+    })
+
+    it('Put - Failure', async ()=>{
+        const {body, statusCode} = await request(app).put("/api/books/5000").send({
+            name: "Inter",
+            author: "Yino"
+        });
+
+        expect(statusCode).toEqual(404);
+
+        expect(body).toEqual({
+            errors: true,
+            message: "Book not found",
+        })
+
+    })
+
+    it('Put - Success', async ()=>{
+        const {body, statusCode} = await request(app).put("/api/books/2").send({
+            name: "Inter",
+            author: "Yino"
+        });
+
+        expect(statusCode).toEqual(201);
+
+        expect(body).toEqual({
+            id: 2,
+            name: "Inter",
+            author: "Yino"
+        })
 
     })
 
